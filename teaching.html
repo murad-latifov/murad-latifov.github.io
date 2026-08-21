@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching — Murad Latifov</title>
+<meta name="description" content="Teaching experience and student feedback for Murad Latifov, Texas Tech University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand">Murad Latifov</a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="cv.pdf" download>CV</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html" class="active">Teaching</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="quotes">
+  <div class="wrap">
+    <p class="eyebrow">From student evaluations</p>
+    <div class="carousel" id="carousel">
+      <div class="quote-window" id="quoteWindow" aria-live="polite">
+
+        <blockquote class="quote on">
+          <p>I understood concepts the best when Instructor Latifov gave real-world examples of a topic, or engaged with the class by asking us questions to create data sets that he used to provide examples of the topic we were discussing in class.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Professor Latifov really cares about his students, and puts in effort to help everyone succeed. I think that he should be a model for other professors to follow.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Professor Latifov's technique of awarding in-class participation with bonus points not only gave me a reason to stay engaged but also helped me stay focused and learn the material overall.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>He was very clear in presenting his material and cared a lot about his students.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Enjoyed the lectures from Mr. Latifov. He made economics pretty easy.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Enthusiastic and engaging, made learning fun and easy.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Instructor Latifov made sure to take time to explain concepts that students were having difficulty understanding, was able to adjust his in-class examples to improve our comprehension, and made sure to remind us when assignments were due.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Very good instructor and is passionate about his work. 10/10<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Teacher is very knowledgeable in the subject. Never had to question if he knew what he was talking about, in turn he was able to break it down for me to understand it.<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>Very nice teacher, he is well spoken and broke down the material nicely!<span class="attrib">Student evaluation</span></p>
+        </blockquote>
+
+        <button class="arrow prev" id="prevBtn" aria-label="Previous quote">&#8249;</button>
+        <button class="arrow next" id="nextBtn" aria-label="Next quote">&#8250;</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Teaching Experience</h2>
+
+    <h3 class="subhead">Instructor of Record</h3>
+    <div class="course"><span class="name">ECO 2305 · Principles of Economics</span><span class="when">Fall 2025, Spring 2026</span></div>
+    <div class="course"><span class="name">ECO 3161 · Excel Basics (Online)</span><span class="when">Summer 2026</span></div>
+    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics</span><span class="when">Fall 2026</span></div>
+
+    <h3 class="subhead">Teaching Assistant</h3>
+    <div class="course"><span class="name">ECO 2305 · Principles of Economics</span><span class="when">Summer 2024, Fall 2024, Spring 2025</span></div>
+    <div class="course"><span class="name">ECO 2305 · Principles of Economics (Online)</span><span class="when">Fall 2023, Fall 2024</span></div>
+    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics</span><span class="when">Summer 2025</span></div>
+    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics (Online)</span><span class="when">Fall 2024</span></div>
+    <div class="course"><span class="name">ECO 2302 · Principles of Macroeconomics (Online)</span><span class="when">Fall 2023, Fall 2024</span></div>
+    <div class="course"><span class="name">ECO 3161 · Excel Basics (Online)</span><span class="when">Spring 2025</span></div>
+    <div class="course"><span class="name">ECO 3361 · Excel for Economists (Online)</span><span class="when">Spring 2024, Spring 2025</span></div>
+    <div class="course"><span class="name">Economics Tutoring Center</span><span class="when">Spring 2024, Fall 2025</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Murad Latifov · Department of Economics, Texas Tech University · 147 Holden Hall, Lubbock, TX 79409</div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+(function () {
+  var quotes = Array.prototype.slice.call(document.querySelectorAll('.quote'));
+  if (!quotes.length) return;
+
+  var dotsBox = document.getElementById('dots');
+  var carousel = document.getElementById('carousel');
+  var idx = 0;
+  var timer = null;
+  var DELAY = 6000;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // build dots
+  quotes.forEach(function (_, i) {
+    var d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.setAttribute('aria-label', 'Go to quote ' + (i + 1));
+    d.addEventListener('click', function () { go(i); restart(); });
+    dotsBox.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsBox.children);
+
+  function go(n) {
+    quotes[idx].classList.remove('on');
+    dots[idx].classList.remove('on');
+    idx = (n + quotes.length) % quotes.length;
+    quotes[idx].classList.add('on');
+    dots[idx].classList.add('on');
+  }
+
+  function next() { go(idx + 1); }
+  function prev() { go(idx - 1); }
+
+  function start() { if (!reduce) timer = setInterval(next, DELAY); }
+  function stop() { clearInterval(timer); }
+  function restart() { stop(); start(); }
+
+  document.getElementById('nextBtn').addEventListener('click', function () { next(); restart(); });
+  document.getElementById('prevBtn').addEventListener('click', function () { prev(); restart(); });
+
+  // pause while hovering or keyboard-focused
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+
+  // arrow-key support
+  carousel.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { next(); restart(); }
+    if (e.key === 'ArrowLeft') { prev(); restart(); }
+  });
+
+  start();
+})();
+</script>
+</body>
+</html>
