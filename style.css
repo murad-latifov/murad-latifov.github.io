@@ -94,6 +94,12 @@ h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
   border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;
 }
 .paperlink:hover { border-color: var(--accent); }
+.titlelink {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--rule); padding-bottom: 1px;
+  transition: color .15s, border-color .15s;
+}
+.titlelink:hover, .titlelink:focus-visible { color: var(--accent); border-color: var(--accent); }
 
 /* ---- Teaching list ---- */
 .subhead {
