@@ -8,175 +8,53 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1a17;
-    --ink-soft: #4a4a44;
-    --paper: #faf8f3;
-    --rule: #d9d4c8;
-    --accent: #6b4c2a;      /* muted brown, ledger ink */
-    --accent-soft: #f0e9dc;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 28px; }
-
-  /* ---- Nav ---- */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(250,248,243,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-  }
-  nav .wrap {
-    display: flex; align-items: baseline; justify-content: space-between;
-    padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; gap: 8px;
-  }
-  .brand {
-    font-family: 'Newsreader', serif;
-    font-size: 1.15rem; font-weight: 500; letter-spacing: 0.01em;
-    color: var(--ink); text-decoration: none;
-  }
-  .navlinks { display: flex; gap: 22px; }
-  .navlinks a {
-    font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--ink-soft); text-decoration: none; padding-bottom: 2px;
-    border-bottom: 1.5px solid transparent; transition: color .15s, border-color .15s;
-  }
-  .navlinks a:hover, .navlinks a:focus-visible { color: var(--accent); border-color: var(--accent); }
-
-  /* ---- Sections ---- */
-  section { padding: 64px 0; border-bottom: 1px solid var(--rule); }
-  section:last-of-type { border-bottom: none; }
-  .eyebrow {
-    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em;
-    color: var(--accent); margin-bottom: 14px; font-weight: 600;
-  }
-  h1 {
-    font-family: 'Newsreader', serif; font-weight: 500;
-    font-size: clamp(2.1rem, 6vw, 3.1rem); line-height: 1.1;
-    letter-spacing: -0.01em; margin-bottom: 6px;
-  }
-  h2 {
-    font-family: 'Newsreader', serif; font-weight: 500;
-    font-size: 1.7rem; margin-bottom: 24px; letter-spacing: -0.01em;
-  }
-  h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-  .lede { font-size: 1.12rem; color: var(--ink-soft); max-width: 60ch; }
-
-  /* ---- Home ---- */
-  #home { padding-top: 80px; }
-  .role { font-size: 1rem; color: var(--ink-soft); margin-bottom: 28px; }
-  .role .inst { color: var(--ink); font-weight: 500; }
-  .contact { margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap; }
-  .contact a {
-    font-size: 0.9rem; color: var(--accent); text-decoration: none;
-    border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;
-  }
-  .contact a:hover { border-color: var(--accent); }
-
-  /* ---- Entries ---- */
-  .entry { margin-bottom: 30px; }
-  .entry:last-child { margin-bottom: 0; }
-  .entry .abstract { color: var(--ink-soft); font-size: 0.96rem; margin-top: 8px; }
-  .meta { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
-  .paperlink {
-    display: inline-block; margin-top: 10px; font-size: 0.85rem;
-    color: var(--accent); text-decoration: none; font-weight: 500;
-    border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;
-  }
-  .paperlink:hover { border-color: var(--accent); }
-  .tag {
-    display: inline-block; font-size: 0.68rem; text-transform: uppercase;
-    letter-spacing: 0.09em; font-weight: 600; color: var(--accent);
-    background: var(--accent-soft); padding: 2px 8px; border-radius: 2px;
-    margin-bottom: 8px;
-  }
-
-  /* ---- Teaching list ---- */
-  .subhead {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--ink); font-weight: 600; margin: 26px 0 12px;
-  }
-  .subhead:first-child { margin-top: 0; }
-  .course {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 16px; padding: 7px 0; border-bottom: 1px dotted var(--rule);
-  }
-  .course:last-child { border-bottom: none; }
-  .course .name { font-size: 0.95rem; }
-  .course .when { font-size: 0.82rem; color: var(--ink-soft); white-space: nowrap; }
-
-  /* ---- CV / education ---- */
-  .cvrow {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 16px; padding: 10px 0; border-bottom: 1px dotted var(--rule);
-  }
-  .cvrow .when { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
-  .cvrow .degree { color: var(--ink-soft); font-size: 0.9rem; }
-  .btn {
-    display: inline-block; margin-top: 18px;
-    font-size: 0.85rem; letter-spacing: 0.04em; text-decoration: none;
-    color: var(--paper); background: var(--accent);
-    padding: 9px 20px; border-radius: 2px; transition: opacity .15s;
-  }
-  .btn:hover { opacity: 0.85; }
-  .skills { font-size: 0.95rem; color: var(--ink-soft); margin-top: 6px; }
-  .skills strong { color: var(--ink); font-weight: 600; }
-
-  footer {
-    padding: 34px 0; font-size: 0.8rem; color: var(--ink-soft);
-    border-top: 1px solid var(--rule); text-align: center;
-  }
-
-  @media (max-width: 480px) {
-    .navlinks { gap: 16px; }
-    .navlinks a { font-size: 0.75rem; }
-    .course, .cvrow { flex-direction: column; gap: 2px; }
-    .course .when, .cvrow .when { white-space: normal; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a href="#home" class="brand">Murad Latifov</a>
+    <a href="index.html" class="brand">Murad Latifov</a>
     <div class="navlinks">
-      <a href="#home">Home</a>
-      <a href="#cv">CV</a>
-      <a href="#research">Research</a>
-      <a href="#teaching">Teaching</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="cv.pdf" download>CV</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html">Teaching</a>
     </div>
   </div>
 </nav>
 
+<main>
 <section id="home">
   <div class="wrap">
-    <h1>Murad Latifov</h1>
-    <p class="role"><span class="inst">PhD Candidate, Department of Economics</span> · Texas Tech University</p>
-    <p class="lede">I study labor, urban, and crime economics by using quasi-experimental methods to understand how policy and local shocks shape work, cities, and public safety.</p>
+    <div class="home-head">
+      <div class="home-text">
+        <h1>Murad Latifov</h1>
+        <p class="role"><span class="inst">PhD Candidate, Department of Economics</span> · Texas Tech University</p>
+        <p class="lede">I study labor, urban, and crime economics by using quasi-experimental methods to understand how policy and local shocks shape work, cities, and public safety.</p>
+      </div>
+      <img class="portrait" src="profile.jpg" alt="Murad Latifov">
+    </div>
     <div class="contact">
       <a href="mailto:mlatifov@ttu.edu">mlatifov@ttu.edu</a>
       <a href="https://www.linkedin.com/in/muradlatifov/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://scholar.google.com/citations?user=PD9L4MwAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
-      <a href="#cv">Curriculum Vitae</a>
+      <a href="cv.pdf" download>Curriculum Vitae</a>
     </div>
   </div>
 </section>
 
-<section id="cv">
+<section class="about">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <p>I am a doctoral candidate in economics at Texas Tech University, working at the intersection of labor, urban, and crime economics. My research asks how public policy and local economic shocks shape outcomes in cities — from public safety and housing access to the way workers form expectations about pay.</p>
+    <p>Methodologically, I rely on quasi-experimental designs that exploit variation in the timing and geography of policy changes, with an emphasis on credible causal identification. My work draws on large administrative and survey microdata, and I work primarily in R and Stata.</p>
+  </div>
+</section>
+
+<section id="background">
   <div class="wrap">
     <p class="eyebrow">Background</p>
-    <h2>Curriculum Vitae</h2>
 
     <h3 class="subhead" style="margin-top:0;">Education</h3>
     <div class="cvrow">
@@ -214,59 +92,15 @@
     <p class="skills"><strong>Tools:</strong> R, Stata, LaTeX, GTAP, Microsoft Office</p>
     <p class="skills"><strong>Languages:</strong> English, Turkish, Azerbaijani</p>
 
-    <a class="btn" href="cv.pdf" target="_blank" rel="noopener">Download full CV (PDF)</a>
+    <a class="btn" href="cv.pdf" download>Download full CV (PDF)</a>
   </div>
 </section>
-
-<section id="research">
-  <div class="wrap">
-    <p class="eyebrow">Working papers &amp; projects</p>
-    <h2>Research</h2>
-
-    <div class="entry">
-      <span class="tag">Job Market Paper</span>
-      <h3>The Impact of Professional Sports Franchise Movements on Urban Crime Rates</h3>
-      <p class="abstract">Municipalities often justify large public subsidies for professional sports franchises through expected social benefits, yet the long-term externalities on public safety remain underexplored. I find that these crime externalities are highly sensitive to market saturation. In solo markets, a city's first franchise structurally increases overall crime, while the departure of a sole franchise produces a proportional decrease. In established multi-team markets, adding or losing a franchise yields no statistically significant change.</p>
-      <a class="paperlink" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7034958" target="_blank" rel="noopener">Read on SSRN →</a>
-    </div>
-
-    <div class="entry">
-      <span class="tag">Work in Progress</span>
-      <h3>The Messi Effect: Dynamic Pricing and Information Shocks in Secondary Ticket Markets</h3>
-      <p class="meta">with James Kemper and Lissa De Mesa</p>
-    </div>
-  </div>
-</section>
-
-<section id="teaching">
-  <div class="wrap">
-    <p class="eyebrow">In the classroom</p>
-    <h2>Teaching</h2>
-
-    <h3 class="subhead">Instructor of Record</h3>
-    <div class="course"><span class="name">ECO 2305 · Principles of Economics</span><span class="when">Fall 2025, Spring 2026</span></div>
-    <div class="course"><span class="name">ECO 3161 · Excel Basics (Online)</span><span class="when">Summer 2026</span></div>
-    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics</span><span class="when">Fall 2026</span></div>
-
-    <h3 class="subhead">Teaching Assistant</h3>
-    <div class="course"><span class="name">ECO 2305 · Principles of Economics</span><span class="when">Summer 2024, Fall 2024, Spring 2025</span></div>
-    <div class="course"><span class="name">ECO 2305 · Principles of Economics (Online)</span><span class="when">Fall 2023, Fall 2024</span></div>
-    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics</span><span class="when">Summer 2025</span></div>
-    <div class="course"><span class="name">ECO 2301 · Principles of Microeconomics (Online)</span><span class="when">Fall 2024</span></div>
-    <div class="course"><span class="name">ECO 2302 · Principles of Macroeconomics (Online)</span><span class="when">Fall 2023, Fall 2024</span></div>
-    <div class="course"><span class="name">ECO 3161 · Excel Basics (Online)</span><span class="when">Spring 2025</span></div>
-    <div class="course"><span class="name">ECO 3361 · Excel for Economists (Online)</span><span class="when">Spring 2024, Spring 2025</span></div>
-    <div class="course"><span class="name">Economics Tutoring Center</span><span class="when">Spring 2024, Fall 2025</span></div>
-  </div>
-</section>
+</main>
 
 <footer>
   <div class="wrap">© <span id="yr"></span> Murad Latifov · Department of Economics, Texas Tech University · 147 Holden Hall, Lubbock, TX 79409</div>
 </footer>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
-
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
